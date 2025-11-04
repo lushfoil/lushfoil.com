@@ -1,0 +1,102 @@
+/* Base typography and page setup */
+:root {
+  --container-max-w: 1000px;
+  --container-max-h: 720px;
+  --gap: 24px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #000;
+  background: #323ef3;
+  overflow: hidden; /* main area handles scrolling on wide screens */
+}
+
+/* Static noise background layer */
+.noise-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('images/noise200.png') repeat;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Global links: black by default, white text on hover */
+a { color: #000; }
+a:visited { color: #000; }
+a:hover, a:focus { color: #fff }
+
+/* Centered app container with sidebar and content */
+.app {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, var(--container-max-w));
+  height: min(90vh, var(--container-max-h));
+  display: grid;
+  grid-template-columns: 35% 65%; /* main body wider than sidebar */
+  gap: var(--gap);
+    padding-right: 0;
+  }
+
+/* Sidebar stays put; entries separated by two new lines worth of space */
+.sidebar {
+  padding-right: 4px; /* subtle separation */
+  overflow: hidden; /* never scrolls in wide layout */
+}
+.sidebar .tab {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 1.6em; /* approx two new lines */
+}
+.sidebar .tab:hover,
+.sidebar .tab:focus {
+  color: #fff;      /* highlight text in white on hover */
+  text-decoration: none;
+}
+.sidebar .tab[aria-current="page"] {
+  text-decoration: underline;
+  color: #353535; /* grey when the respective tab is open */
+}
+
+/* Main content scrolls */
+.content {
+  overflow: auto; /* scrollable area */
+  padding-right: 8px; /* room for scrollbar */
+}
+
+/* Portrait/mobile: stack sidebar above content and let the page scroll */
+@media (orientation: portrait) {
+  body { overflow: auto; }
+
+  .app {
+    position: static;
+    transform: none;
+    width: min(92vw, 720px);
+    height: auto;
+    display: block; /* stack */
+    margin: 6vh auto; /* keep centered horizontally */
+  }
+
+  .sidebar {
+    overflow: visible; /* scrolls with page */
+    margin-bottom: 2em;
+  }
+
+  .content {
+    overflow: visible; /* share page scroll */
+    padding-right: 0;
+  }
+}
