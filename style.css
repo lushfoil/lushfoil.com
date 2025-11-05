@@ -3,7 +3,6 @@
   --container-max-w: 1800px;
   --container-max-h: 720px;
   --gap: 12px;
-  --photo-offset: 30px;
 }
 
 * { box-sizing: border-box; }
@@ -72,7 +71,7 @@ a:hover, a:focus { color: #fff }
   width: min(92vw, var(--container-max-w));
   height: auto;
   display: grid;
-  grid-template-columns: 30% 70%; /* main body wider than sidebar */
+  grid-template-columns: 320px 1fr; /* fixed sidebar width, content fills */
   gap: var(--gap);
   padding-right: 0;
   margin: 6vh auto; /* center horizontally with top breathing room */
@@ -111,6 +110,7 @@ a:hover, a:focus { color: #fff }
   font-size: 22px; /* slightly smaller main body text */
   overflow: visible; /* share page scroll */
   padding-right: 0;
+  max-width: 1200px;
 }
 
 /* Bin collage: image with randomly placed links over it */
@@ -174,7 +174,7 @@ a:hover, a:focus { color: #fff }
   gap: var(--gap);
 }
 .photo-col:nth-child(2) { /* center column offset for brick look */
-  margin-top: var(--photo-offset);
+  margin-top: 300px;
 }
 .photo-item {
   display: block;
@@ -196,7 +196,7 @@ a:hover, a:focus { color: #fff }
   .photo-col:nth-child(2) {
     margin-top: 0; /* no middle offset in 2-col layout */
   }
-  .photo-col { gap: 8px; }
+  .photo-col { gap: 12px; }
   .photo-item {
     width: 100%; /* scale to column */
     max-width: 100%;
@@ -204,9 +204,4 @@ a:hover, a:focus { color: #fff }
   }
 }
 
-/* Landscape-only tweaks for photography: tighter space between sidebar and photos */
-@media (min-aspect-ratio: 3/4) {
-  body.photography-mode .app {
-    column-gap: 8px; /* reduce space between sidebar and main content */
-  }
-}
+/* Landscape-only tweaks for photography removed to keep spacing consistent across tabs */

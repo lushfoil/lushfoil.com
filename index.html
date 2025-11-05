@@ -7,29 +7,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="noise-bg" aria-hidden="true"></div>
-    <div class="app" id="app">
-      <aside class="sidebar" role="navigation" aria-label="Sidebar">
-        <a href="#home" class="tab" data-tab="home">HOME // LUSHFOIL</a>
+  <div class="noise-bg" aria-hidden="true"></div>
+  <div class="app" id="app">
+    <aside class="sidebar" role="navigation" aria-label="Sidebar">
+      <a href="#home" class="tab" data-tab="home">HOME // LUSHFOIL</a>
 
-        <a href="#matt-newell" class="tab" data-tab="matt-newell">MATT NEWELL</a>
+      <a href="#matt-newell" class="tab" data-tab="matt-newell">MATT NEWELL</a>
 
-        <a href="#photography" class="tab" data-tab="photography">PHOTOGRAPHY</a>
+      <a href="#photography" class="tab" data-tab="photography">PHOTOGRAPHY</a>
 
-        <a href="#client-work" class="tab" data-tab="client-work">CLIENT WORK</a>
+      <a href="#client-work" class="tab" data-tab="client-work">CLIENT WORK</a>
 
-        <a href="#project-files" class="tab" data-tab="project-files">PROJECT FILES</a>
+      <!-- <a href="#project-files" class="tab" data-tab="project-files">PROJECT FILES</a> -->
      
      
-      </aside>
-      <main class="content" id="content" tabindex="-1" role="main" aria-live="polite">
+    </aside>
+    <main class="content" id="content" tabindex="-1" role="main" aria-live="polite">
+
         <!-- Section: Home // Lushfoil -->
         <section class="panel" data-key="home">
         <p><img src="images/LushfoilLogo360.jpg" alt="Lushfoil Logo" width="360" height="186"></p>
         <p><iframe width="560" height="315" src="https://www.youtube.com/embed/XQfExa_FAtg" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
         <p>Lushfoil Photography Sim is a tranquil exploration and photography experience set across a vast selection of faithfully detailed landscapes.</p>
         <p>Available now on <a href="https://store.steampowered.com/app/1749860/Lushfoil_Photography_Sim/" target="_blank">Steam</a>, <a href="https://store.playstation.com/concept/10009495/" target="_blank">Playstation</a> and <a href="https://www.xbox.com/games/store/lushfoil-photography-sim/9MXWLBJZHC39/0010" target="_blank">Xbox</a>.</p>
-        <br><br><br>
+        <br><br>
 
         <p>Testimonials</p>
         <br>
@@ -45,36 +46,74 @@
 
         <!-- Section: Matt Newell -->
         <section class="panel" data-key="matt-newell" hidden>
-          <img src="images/babyportrait.jpg" alt="Matt Newell" width="200" height="270">
-          <p>Hey, My name is Matt Newell and I'm a 3D Environment Artist/Developer working in Unreal Engine. Also an avid photographer.</p>
-          <p>I'm currently based between Tokyo, Japan and Perth, Australia. If you would like to collaborate, or just say hi, you can reach me here:</p>
-          <p><a href="mailto:matt@lushfoil.com">matt@lushfoil.com</a>
-          <p>Retired Social Media Accounts:
-          <p>
-          <a href="https://twitter.com/lushfoil" target="_blank">Twitter</a>
-          <a href="https://bsky.app/profile/lushfoil.bsky.social" target="_blank">Bluesky</a>
-          <a href="https://youtube.com/@lushfoil" target="_blank">Youtube</a>
-          <a href="https://www.tiktok.com/@lushfoil" target="_blank">Tiktok</a>
-          <a href="https://instagram.com/lushfoil" target="_blank">Instagram</a>
-          <a href="https://www.threads.net/@lushfoil" target="_blank">Threads</a>
-          <a href="http://lushfoil.com/" target="_blank">itch.io</a>
-          </p>
+        <img src="images/sketch1.png" alt="Matt Newell" title="Drawn By Reiji Shimane @rei_dan" width="275" height="350">
+        <img src="images/sketch2.png" alt="Matt Newell" title="Drawn By Reiji Shimane @rei_dan" width="275" height="350">
+        <p>Matt Newell is a Technical Artist and Software Engineer who has been working primarily in Unreal Engine for the past few years.</p>
+        <p>He is the sole developer and producer of the video game project "Lushfoil Photography Sim" which was published in 2025 by Annapurna Interactive to all major gaming platforms.</p>
+        <p>Through his career he has used his knowledge in real-time 3d graphics to produce music videos, live art installations, games and VR applications, and other experimental real-time graphics applications.</p>
+        <br>
+        <p>He was born in '97, and is currently based between Perth, Australia and Tokyo, Japan.</p>
+        <p>For any chats or queries:  <a href="mailto:matt@lushfoil.com">matt@lushfoil.com</a></p>
+        <br>
+        <p>Retired Social Media Accounts:</p>
+        <div class="bin-collage">
+          <img src="images/bin.png" alt="Retired social media bin">
+          <a class="bin-link" href="https://twitter.com/lushfoil" target="_blank" rel="noopener">Twitter</a>
+          <a class="bin-link" href="https://bsky.app/profile/lushfoil.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+          <a class="bin-link" href="https://youtube.com/@lushfoil" target="_blank" rel="noopener">Youtube</a>
+          <a class="bin-link" href="https://www.tiktok.com/@lushfoil" target="_blank" rel="noopener">Tiktok</a>
+          <a class="bin-link" href="https://instagram.com/lushfoil" target="_blank" rel="noopener">Instagram</a>
+          <a class="bin-link" href="https://www.threads.net/@lushfoil" target="_blank" rel="noopener">Threads</a>
+          <a class="bin-link" href="http://lushfoil.itch.io/" target="_blank" rel="noopener">itch.io</a>
+          <a class="bin-link" href="https://www.linkedin.com/in/matt-newell-919475189/" target="_blank" rel="noopener">Linkedin</a>
+          </div>
         </section>
 
         <!-- Section: Photography -->
         <section class="panel" data-key="photography" hidden>
-          <p>Showcase photography work. Describe themes, gear, series, or galleries.</p>
+          <div class="photo-grid" id="photoGrid" aria-live="polite"></div>
         </section>
 
         <!-- Section: Client Work -->
         <section class="panel" data-key="client-work" hidden>
-          <p>Commissioned projects, collaborations, and selected case studies go here.</p>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/tHIoY9yZvkk" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>NordicTrack - Outside of Ordinary (2021)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/kr17zMWQ2QY" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Pixel Artworks - The Spaces In Between (2022)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1mKdYayckSc" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Beyond the Milky Way (2022)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/n4yukJSIgOM" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Harris Cole & Aso - Safe, Now (2018)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/HYluvgS6lu8" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Ta-Ku x Panama - Cruel (2020)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/gVo7EXyOBm8" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>8 2 3 - Eevee "Serenity" (2020)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/etfHj-Fd1mc" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Memoir Music (2019-2020)</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/N93badVT1qg" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>SPEE3D - 3D Printing Simulator</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://player.vimeo.com/video/253948651" title="Vimeo player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Create & Explore 015 - Matt Newell x Harris Cole</p>
+        <br>
+        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/l_B8OMsQ7xM" title="YouTube video player" frameborder="0" allowfullscreen></iframe></p>
+        <p>Eonosis Theraputics - VR-Modulated Psychedelic Psychotherapy (2022)</p>
+        <br>
         </section>
 
         <!-- Section: Project Files -->
+        <!--
         <section class="panel" data-key="project-files" hidden>
           <p>Resources, downloads, and links to project files or documentation.</p>
         </section>
+        -->
       </main>
     </div>
 
