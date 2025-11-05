@@ -1,8 +1,9 @@
 /* Base typography and page setup */
 :root {
-  --container-max-w: 1000px;
+  --container-max-w: 1800px;
   --container-max-h: 720px;
-  --gap: 24px;
+  --gap: 12px;
+  --photo-offset: 30px;
 }
 
 * { box-sizing: border-box; }
@@ -14,7 +15,35 @@ body {
   line-height: 1.5;
   color: #000;
   background: #323ef3;
-  overflow: hidden; /* main area handles scrolling on wide screens */
+  overflow: auto; /* page scrolls in landscape/wide layout */
+}
+
+/* Home (first tab) theme overrides */
+body.home-theme {
+  background: #222; /* dark grey */
+  color: #fff;      /* near-white text */
+}
+body.home-theme a { color: #fff; }
+body.home-theme a:visited { color: #fff; }
+body.home-theme a:hover,
+body.home-theme a:focus { color: #326ff3; } /* fully white when highlighted */
+
+/* Make sidebar tabs behave like links on the homepage */
+body.home-theme .sidebar .tab {
+  text-decoration: none; /* underline only on hover */
+  color: #fff; /* match link color */
+}
+body.home-theme .sidebar .tab:visited {
+  color: #fff; /* match visited link color */
+}
+body.home-theme .sidebar .tab:hover,
+body.home-theme .sidebar .tab:focus {
+  color: #326ff3; /* match hover/focus color */
+  text-decoration: underline; /* keep underline on hover */
+}
+/* Keep active tab color consistent with home link color */
+body.home-theme .sidebar .tab[aria-current="page"] {
+  color: #fff;
 }
 
 /* Static noise background layer */
@@ -38,28 +67,34 @@ a:hover, a:focus { color: #fff }
 
 /* Centered app container with sidebar and content */
 .app {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+  transform: none;
   width: min(92vw, var(--container-max-w));
-  height: min(90vh, var(--container-max-h));
+  height: auto;
   display: grid;
-  grid-template-columns: 35% 65%; /* main body wider than sidebar */
+  grid-template-columns: 30% 70%; /* main body wider than sidebar */
   gap: var(--gap);
-    padding-right: 0;
-  }
+  padding-right: 0;
+  margin: 6vh auto; /* center horizontally with top breathing room */
+}
+
+/* When photography tab is active, dock layout to left in widescreen */
+/* (Removed docking in photography mode to keep sidebar position consistent) */
 
 /* Sidebar stays put; entries separated by two new lines worth of space */
 .sidebar {
   padding-right: 4px; /* subtle separation */
-  overflow: hidden; /* never scrolls in wide layout */
+  /* Keep sidebar pinned in landscape while page scrolls */
+  position: sticky;
+  top: 6vh;
+  align-self: start;
+  overflow: visible;
 }
 .sidebar .tab {
   display: block;
   color: inherit;
   text-decoration: none;
-  margin-bottom: 1.6em; /* approx two new lines */
+  margin-bottom: 1.2em; /* slightly reduced spacing */
 }
 .sidebar .tab:hover,
 .sidebar .tab:focus {
@@ -73,12 +108,33 @@ a:hover, a:focus { color: #fff }
 
 /* Main content scrolls */
 .content {
-  overflow: auto; /* scrollable area */
-  padding-right: 8px; /* room for scrollbar */
+  font-size: 22px; /* slightly smaller main body text */
+  overflow: visible; /* share page scroll */
+  padding-right: 0;
 }
 
-/* Portrait/mobile: stack sidebar above content and let the page scroll */
-@media (orientation: portrait) {
+/* Bin collage: image with randomly placed links over it */
+.bin-collage {
+  position: relative;
+  display: inline-block;
+  max-width: 600px;
+}
+.bin-collage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.bin-collage .bin-link {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Switch layout when viewport is taller than 2:3 (width/height < 2/3) */
+@media (max-aspect-ratio: 3/4) {
   body { overflow: auto; }
 
   .app {
@@ -91,6 +147,10 @@ a:hover, a:focus { color: #fff }
   }
 
   .sidebar {
+    /* In stacked layout, sidebar becomes a normal block */
+    position: static;
+    top: auto;
+    align-self: auto;
     overflow: visible; /* scrolls with page */
     margin-bottom: 2em;
   }
@@ -98,5 +158,55 @@ a:hover, a:focus { color: #fff }
   .content {
     overflow: visible; /* share page scroll */
     padding-right: 0;
+  }
+}
+
+/* Photography grid: three columns with center offset */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, max-content); /* columns sized to content for full-size photos */
+  column-gap: var(--gap); /* match row gap for equal spacing */
+  align-items: start;
+}
+.photo-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+.photo-col:nth-child(2) { /* center column offset for brick look */
+  margin-top: var(--photo-offset);
+}
+.photo-item {
+  display: block;
+  width: auto; /* keep natural width in widescreen */
+  max-width: none;
+  height: auto;
+}
+
+/* Crop right side in photography panel when content overflows */
+.panel[data-key="photography"] {
+  overflow-x: hidden;
+}
+
+/* Vertical mode: two columns that scale to window */
+@media (max-aspect-ratio: 3/4) {
+  .photo-grid {
+    grid-template-columns: 1fr 1fr; /* exactly two columns */
+  }
+  .photo-col:nth-child(2) {
+    margin-top: 0; /* no middle offset in 2-col layout */
+  }
+  .photo-col { gap: 8px; }
+  .photo-item {
+    width: 100%; /* scale to column */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Landscape-only tweaks for photography: tighter space between sidebar and photos */
+@media (min-aspect-ratio: 3/4) {
+  body.photography-mode .app {
+    column-gap: 8px; /* reduce space between sidebar and main content */
   }
 }
