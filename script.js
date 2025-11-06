@@ -1,4 +1,4 @@
-// Tab switching by showing/hiding pre-authored sections in the DOM
+﻿// Tab switching by showing/hiding pre-authored sections in the DOM
 (function () {
   const content = document.getElementById('content');
   const tabs = Array.from(document.querySelectorAll('.tab'));

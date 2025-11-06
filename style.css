@@ -9,7 +9,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: "Times New Roman", "EB Garamond", Times, serif;
+  font-family: "Times New Roman", "EB Garamond", Garamond, Georgia, Times, serif;
   font-size: 24px;
   line-height: 1.5;
   color: #000;
@@ -192,6 +192,9 @@ a:hover, a:focus { color: #fff }
     margin-bottom: 2em;
   }
 
+  /* On home in portrait, hide only the top sidebar menu tabs */
+  body.home-theme .sidebar .tab { display: none; }
+
   .content {
     overflow: visible; /* share page scroll */
     padding-right: 0;
@@ -247,4 +250,6 @@ a:hover, a:focus { color: #fff }
   }
 }
 
-/* Landscape-only tweaks for photography removed to keep spacing consistent across tabs */
+
+/* Small caption under sketches */
+.img-caption { font-size: 0.5em; margin: 4px 0 12px; }
