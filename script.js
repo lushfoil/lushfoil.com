@@ -1,7 +1,7 @@
 // Tab switching by showing/hiding pre-authored sections in the DOM
 (function () {
   const content = document.getElementById('content');
-  const tabs = Array.from(document.querySelectorAll('.sidebar .tab'));
+  const tabs = Array.from(document.querySelectorAll('.tab'));
   const panels = Array.from(document.querySelectorAll('.content .panel'));
 
   const validKeys = new Set(panels.map(p => p.dataset.key));
@@ -212,14 +212,27 @@
 
       const ordered = vertical.concat(others);
 
-      const cols = ensureColumns(grid, 3);
-      ordered.forEach((file, idx) => {
-        const col = cols[idx % 3];
-        col.appendChild(makeImg(file));
-      });
+      // Create image elements once so we can reflow without recreating
+      const imgEls = ordered.map(makeImg);
+
+      let lastColCount = -1;
+      function render(colCount) {
+        // Clear and recreate the requested number of columns
+        grid.innerHTML = '';
+        const cols = ensureColumns(grid, colCount);
+        // Distribute images evenly across columns
+        imgEls.forEach((img, idx) => {
+          cols[idx % colCount].appendChild(img);
+        });
+      }
 
       // Set half-size scaling in widescreen and exact offset, keep them updated on resize
       const updateLayout = () => {
+        const colCount = isWidescreen() ? 3 : 2;
+        if (colCount !== lastColCount) {
+          render(colCount);
+          lastColCount = colCount;
+        }
         applyScaleForAspect(grid, sizeMap);
         computeAndApplyOffset(grid);
       };

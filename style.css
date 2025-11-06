@@ -1,4 +1,4 @@
-/* Base typography and page setup */
+﻿/* Base typography and page setup */
 :root {
   --container-max-w: 1800px;
   --container-max-h: 720px;
@@ -9,12 +9,33 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Times New Roman", "EB Garamond", Times, serif;
   font-size: 24px;
   line-height: 1.5;
   color: #000;
   background: #323ef3;
   overflow: auto; /* page scrolls in landscape/wide layout */
+}
+
+/* Elements visible only in portrait/stacked layout */
+.portrait-only { display: none; }
+
+/* Bottom tabs (duplicate of sidebar) hidden by default */
+.bottom-tabs { display: none; }
+.bottom-tabs .tab {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin-top: 1.2em;
+}
+.bottom-tabs .tab:hover,
+.bottom-tabs .tab:focus {
+  color: #fff;
+  text-decoration: none;
+}
+.bottom-tabs .tab[aria-current="page"] {
+  text-decoration: underline;
+  color: #222222;
 }
 
 /* Home (first tab) theme overrides */
@@ -45,6 +66,19 @@ body.home-theme .sidebar .tab[aria-current="page"] {
   color: #fff;
 }
 
+/* Apply same home theme link behavior to bottom tabs */
+body.home-theme .bottom-tabs .tab {
+  text-decoration: none;
+  color: #fff;
+}
+body.home-theme .bottom-tabs .tab:visited { color: #fff; }
+body.home-theme .bottom-tabs .tab:hover,
+body.home-theme .bottom-tabs .tab:focus {
+  color: #326ff3;
+  text-decoration: underline;
+}
+body.home-theme .bottom-tabs .tab[aria-current="page"] { color: #fff; }
+
 /* Static noise background layer */
 .noise-bg {
   position: fixed;
@@ -70,6 +104,8 @@ a:hover, a:focus { color: #fff }
   transform: none;
   width: min(92vw, var(--container-max-w));
   height: auto;
+  /* Ensure sticky sidebar has space to stick even on short panels */
+  min-height: calc(100vh - 12vh); /* account for top/bottom 6vh margins */
   display: grid;
   grid-template-columns: 320px 1fr; /* fixed sidebar width, content fills */
   gap: var(--gap);
@@ -102,7 +138,7 @@ a:hover, a:focus { color: #fff }
 }
 .sidebar .tab[aria-current="page"] {
   text-decoration: underline;
-  color: #353535; /* grey when the respective tab is open */
+  color: #222222; /* grey when the respective tab is open */
 }
 
 /* Main content scrolls */
@@ -142,6 +178,7 @@ a:hover, a:focus { color: #fff }
     transform: none;
     width: min(92vw, 720px);
     height: auto;
+    min-height: auto; /* stacked layout doesn't need a minimum height */
     display: block; /* stack */
     margin: 6vh auto; /* keep centered horizontally */
   }
@@ -159,6 +196,12 @@ a:hover, a:focus { color: #fff }
     overflow: visible; /* share page scroll */
     padding-right: 0;
   }
+
+  /* Show the bottom tabs in portrait */
+  .bottom-tabs { display: block; margin: 2em 0 0 0; }
+
+  /* Show portrait-only elements only on Home in portrait */
+  .home-theme .portrait-only { display: block; }
 }
 
 /* Photography grid: three columns with center offset */
