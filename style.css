@@ -253,3 +253,59 @@ a:hover, a:focus { color: #fff }
 
 /* Small caption under sketches */
 .img-caption { font-size: 0.5em; margin: 4px 0 12px; }
+
+/* High Contrast Mode toggle in sidebar */
+.hc-toggle {
+  display: block;
+  font-size: 0.5em; /* half-size text */
+  color: inherit;
+  text-decoration: none;
+  margin-top: 0.4em;
+}
+.hc-toggle:hover, .hc-toggle:focus { text-decoration: underline; }
+
+/* High Contrast Mode */
+body.high-contrast,
+body.high-contrast * {
+  color-scheme: light;
+}
+body.high-contrast { 
+  background: #fff !important; 
+  color: #000 !important; 
+}
+body.high-contrast .noise-bg { display: none !important; }
+body.high-contrast .app,
+body.high-contrast .sidebar,
+body.high-contrast .content,
+body.high-contrast .panel,
+body.high-contrast .bottom-tabs {
+  background: #fff !important;
+  color: #000 !important;
+}
+/* Text/link colors */
+body.high-contrast a,
+body.high-contrast a:visited,
+body.high-contrast .tab,
+body.high-contrast .bottom-tabs .tab,
+body.high-contrast .sidebar .tab,
+body.high-contrast .hc-toggle {
+  color: #000 !important;
+}
+body.high-contrast a:hover,
+body.high-contrast a:focus,
+body.high-contrast .tab:hover,
+body.high-contrast .tab:focus,
+body.high-contrast .bottom-tabs .tab:hover,
+body.high-contrast .bottom-tabs .tab:focus,
+body.high-contrast .sidebar .tab:hover,
+body.high-contrast .sidebar .tab:focus,
+body.high-contrast .hc-toggle:hover,
+body.high-contrast .hc-toggle:focus {
+  color: #666 !important; /* grey on hover */
+}
+/* Remove active/visited special coloring in high-contrast */
+body.high-contrast .sidebar .tab[aria-current="page"],
+body.high-contrast .bottom-tabs .tab[aria-current="page"] {
+  color: #000 !important;
+  text-decoration: underline;
+}

@@ -243,3 +243,29 @@
     });
   }
 })();
+
+// High Contrast Mode toggle
+(() => {
+  const TOGGLE_ID = 'hc-toggle';
+  const STORAGE_KEY = 'highContrastEnabled';
+  const el = document.getElementById(TOGGLE_ID);
+  if (!el) return;
+
+  function setEnabled(enabled) {
+    document.body.classList.toggle('high-contrast', !!enabled);
+    el.textContent = `(high contrast // ${enabled ? 'on' : 'off'})`;
+    el.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  }
+
+  // Initialize from storage (default off)
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const initial = saved === '1';
+  setEnabled(initial);
+
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    const enabled = !document.body.classList.contains('high-contrast');
+    setEnabled(enabled);
+    try { localStorage.setItem(STORAGE_KEY, enabled ? '1' : '0'); } catch (_) {}
+  });
+})();
