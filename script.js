@@ -27,6 +27,9 @@
     // Mark when photography is active for layout tweaks
     document.body.classList.toggle('photography-mode', key === 'photography');
 
+    // Update document title based on active section
+    document.title = (key === 'home') ? 'Lushfoil Photography Sim' : 'Matt Newell';
+
     // When viewing Matt Newell panel, randomize bin link positions
     if (key === 'matt-newell') {
       randomizeBinLinks();
