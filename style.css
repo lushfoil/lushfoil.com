@@ -205,6 +205,9 @@ a:hover, a:focus { color: #fff }
 
   /* Show portrait-only elements only on Home in portrait */
   .home-theme .portrait-only { display: block; }
+
+  /* Hide high-contrast toggle on Home in portrait */
+  .home-theme .hc-toggle { display: none; }
 }
 
 /* Photography grid: three columns with center offset */
